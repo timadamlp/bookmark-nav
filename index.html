@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的书签导航 | 个人收藏中心</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 更新网站图标引用 -->
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+    <meta name="description" content="个人书签导航站，整合我的Google Chrome书签">
+    <meta name="theme-color" content="#4285f4">
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-bookmark"></i> 我的书签导航</h1>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-input" placeholder="搜索书签...">
+                <div id="search-results-count"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 侧边栏切换按钮 -->
+    <div class="sidebar-toggle">
+        <button id="toggle-sidebar" class="sidebar-toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- 侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-folder"></i> 书签分类</h3>
+            <button id="close-sidebar" class="close-sidebar-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-search">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="sidebar-search-input" placeholder="搜索分类...">
+        </div>
+        <div class="sidebar-content">
+            <div id="folders-list" class="folders-list">
+                <!-- 这里会动态填充分类列表 -->
+                <div class="sidebar-loading">
+                    <div class="spinner-small"></div>
+                    <span>加载分类...</span>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-footer">
+            <button id="add-folder-btn" class="add-folder-btn">
+                <i class="fas fa-plus"></i> 新建分类
+            </button>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <div class="file-input-container">
+                <label for="bookmark-file" class="file-input-label">
+                    <i class="fas fa-file-import"></i> 导入书签
+                </label>
+                <input type="file" id="bookmark-file" accept=".html">
+            </div>
+            <button id="clear-bookmarks" class="toolbar-btn">
+                <i class="fas fa-trash-alt"></i> 清除书签
+            </button>
+        </div>
+        <div class="toolbar-right">
+            <div class="view-options">
+                <button id="toggle-view" class="toolbar-btn" title="切换查看模式">
+                    <i class="fas fa-th-large"></i> <span id="view-mode-text">列表视图</span>
+                </button>
+            </div>
+            <button id="toggle-theme" class="toolbar-btn" title="切换暗色/亮色主题">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+
+    <main class="container with-sidebar">
+        <div id="loading-indicator" class="loading">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">正在处理书签...</div>
+        </div>
+        
+        <div id="empty-state" class="empty-state">
+            <div class="empty-state-icon">
+                <i class="fas fa-bookmark"></i>
+            </div>
+            <h2>开始创建您的书签导航</h2>
+            <p>导入您的Chrome书签，创建个性化导航站点。您可以点击上方的"导入书签"按钮，或直接拖放书签HTML文件到下方区域。</p>
+            <div class="drop-zone">
+                <div class="drop-zone-prompt">
+                    <i class="fas fa-cloud-upload-alt drop-icon"></i>
+                    <p>拖放书签文件到这里</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="bookmarks-container"></div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>个人书签导航 &copy; <span id="current-year"></span></p>
+            <p class="stats">已加载 <span id="bookmark-count">0</span> 个书签，<span id="folder-count">0</span> 个分类</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
